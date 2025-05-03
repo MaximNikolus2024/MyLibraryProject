@@ -1,0 +1,49 @@
+Проект симулирует работу онлайн библеотеки.
+Hа данный момент нужно сделать:
+1. Entity's
+______________________________________________
+Book:
+private String title
+private String bookDescription
+private Integer id
+private Status status
+private Genre genre
+private Author author
+
+Author:
+
+private String firstName
+private String lastName
+private Integer id
+private String aboutAuthor
+private String email
+
+2. DTO
+__________________________________________
+AuthorRequest:
+
+private String firstName
+private String lastName
+private String email
+private String authorPassword
+
+AuthorResponse:
+
+private String firstName
+private String lastName
+private String aboutAuthor
+private String email
+
+BookRequest:
+
+private String title
+private Genre   genre
+private String authorName
+
+BookResponse:
+
+private String title
+private String bookDescription
+private Status status
+private AuthorResponse authorResponse
+____________________________________________
