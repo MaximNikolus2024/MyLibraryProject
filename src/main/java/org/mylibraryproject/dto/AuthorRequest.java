@@ -1,7 +1,5 @@
-package org.mylibraryproject.entity;
+package org.mylibraryproject.dto;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -10,22 +8,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Builder
-
-public class Author {
+public class AuthorRequest {
     @NotBlank(message = "First name is required and must be not blank")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 15, message = "First name length not correct")
     private String firstName;
     private String lastName;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String aboutAuthor;
-    private String authorPassword;
-    @Email
-    @Column(nullable = false, unique = true)
     private String email;
+    private String authorPassword;
 }
