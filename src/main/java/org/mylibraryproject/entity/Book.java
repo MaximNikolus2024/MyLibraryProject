@@ -14,15 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 public class Book {
-    public enum Genre {
-        FANTASY,
-        SCIENCEFICTION,
-        SPORT,
-        BUSINESS,
-        COMEDY,
-        MYSTERY,
-        HORROR
-    }
+
     public enum Status {
         AVAILABLE,
         CHECHEDOUT,
@@ -39,8 +31,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer id;
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
+    private String genre;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;

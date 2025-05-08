@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.mylibraryproject.entity.Book;
 
 @Data
 @AllArgsConstructor
@@ -12,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class BookResponse {
     private String title;
     private String bookDescription;
-    private String status;
+    private Book.Status status;
     private AuthorResponse authorResponse;
 }

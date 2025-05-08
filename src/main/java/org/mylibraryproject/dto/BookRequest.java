@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class BookRequest {
     private String title;
     private String genre;
-    private String authorName;
+   private String authorName;
 }
