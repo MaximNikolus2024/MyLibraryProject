@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="1" author="Maxim Nikolus">
+        <createTable tableName="authors">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_authors"/>
+            </column>
+            <column name="first_name" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(15)"/>
+            <column name="about_author" type="text"/>
+            <column name="author_password" type="varchar(255)"/>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Создание таблицы books -->
+    <changeSet id="2" author="Maxim Nikolus">
+        <createTable tableName="books">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_books"/>
+            </column>
+            <column name="title" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="books"
+                baseColumnNames="author_id"
+                referencedTableName="authors"
+                referencedColumnNames="id"
+                constraintName="fk_books_authors"/>
+    </changeSet>
+
+    <!-- Добавление начальных данных для authors -->
+    <changeSet id="3" author="Maxim Nikolus">
+        <insert tableName="authors">
+            <column name="id" valueNumeric="1"/>
+            <column name="first_name" value="John"/>
+            <column name="last_name" value="Doe"/>
+            <column name="about_author" value="Author of several books."/>
+            <column name="author_password" value="password123"/>
+            <column name="email" value="john.doe@example.com"/>
+        </insert>
+        <insert tableName="authors">
+            <column name="id" valueNumeric="2"/>
+            <column name="first_name" value="Jane"/>
+            <column name="last_name" value="Smith"/>
+            <column name="about_author" value="A passionate writer."/>
+            <column name="author_password" value="securepassword"/>
+            <column name="email" value="jane.smith@example.com"/>
+        </insert>
+    </changeSet>
+
+    <!-- Добавление начальных данных для books -->
+    <changeSet id="4" author="Maxim Nikolus">
+        <insert tableName="books">
+            <column name="id" valueNumeric="1"/>
+            <column name="title" value="The Great Adventure"/>
+            <column name="book_description" value="An exciting journey through the unknown."/>
+            <column name="genre" value="Adventure"/>
+            <column name="status" value="AVAILABLE"/>
+            <column name="author_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="books">
+            <column name="id" valueNumeric="2"/>
+            <column name="title" value="Mystery of the Lost Artifact"/>
+            <column name="book_description" value="A thrilling mystery that keeps you on edge."/>
+            <column name="genre" value="Mystery"/>
+            <column name="status" value="CHECKEDOUT"/>
+            <column name="author_id" valueNumeric="2"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>
